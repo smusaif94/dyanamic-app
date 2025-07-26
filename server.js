@@ -15,3 +15,16 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
+// Serve static files from 'public' folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+// API route to return dynamic message
+app.get('/api/message', (req, res) => {
+  res.json({ message: "Hello from the server!" });
+});
+
+// Serve index.html at root
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
