@@ -4,8 +4,13 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
-// Static folder 'public' serve karega
+// Serve static files from 'public' folder
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Optional: serve index.html at root path
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
